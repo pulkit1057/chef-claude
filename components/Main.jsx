@@ -2,7 +2,7 @@
 export default function Main() {
     return (
         <main>
-            <form>
+            <form className="add-ingredient-form">
                 <input
                     type="text"
                     aria-label="add ingredients"
