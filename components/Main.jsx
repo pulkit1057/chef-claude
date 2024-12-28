@@ -1,7 +1,8 @@
 import React from "react";
+import CloudeRecipe from "./CloudeRecipe";
+import IngredientsList from "./IngredientsList";
 export default function Main() {
-
-
+    const [showRecipe, setResipe] = React.useState(false)
     const [ingredients, setIngredients] = React.useState([])
 
     const i = ingredients.map(ingredient => (<li key={ingredient}>{ingredient}</li>))
@@ -18,21 +19,16 @@ export default function Main() {
         event.target.reset();
     }
 
-    // function handleSubmit(formData) {
-    //     const newIngredient = formData.get("ingredient")
 
-    //     setIngredients(function (prevIngredients) {
-    //         return [...prevIngredients, newIngredient]
-    //     })
-    // }
+    function getRecipe() {
+        setResipe(prev => !prev)
+    }
 
 
     return (
         <main>
             <form
                 onSubmit={handleSubmit}
-                // action={handleSubmit}
-                // method="post"
                 className="add-ingredient-form">
                 <input
                     type="text"
@@ -42,52 +38,9 @@ export default function Main() {
                 />
                 <button>Add Ingredient</button>
             </form>
-            {i.length > 0 && <section>
-                <h2>Ingredients on hand:</h2>
-                <ul className="ingredients-list" aria-live="polite">{i}</ul>
+            {i.length > 0 && <IngredientsList />}
 
-                <div className="get-recipe-container">
-                    <div>
-                        <h3>Ready for a Recipe?</h3>
-                        <p>Generate a recepe from your list of ingredients.</p>
-                    </div>
-                    <button>Get a recipe</button>
-                </div>
-            </section>}
+            {showRecipe && <CloudeRecipe />}
         </main>
     )
 }
-
-
-// import React from "react"
-
-// export default function Main() {
-
-//     const [ingredients, setIngredients] = React.useState([])
-
-//     const ingredientsListItems = ingredients.map(ingredient => (
-//         <li key={ingredient}>{ingredient}</li>
-//     ))
-
-//     function addIngredient(formData) {
-//         const newIngredient = formData.get("ingredient")
-//         setIngredients(prevIngredients => [...prevIngredients, newIngredient])
-//     }
-
-//     return (
-//         <main>
-//             <form action={addIngredient} className="add-ingredient-form">
-//                 <input
-//                     type="text"
-//                     placeholder="e.g. oregano"
-//                     aria-label="Add ingredient"
-//                     name="ingredient"
-//                 />
-//                 <button>Add ingredient</button>
-//             </form>
-//             <ul>
-//                 {ingredientsListItems}
-//             </ul>
-//         </main>
-//     )
-// }
