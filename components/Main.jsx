@@ -1,11 +1,12 @@
 import React from "react";
 import CloudeRecipe from "./CloudeRecipe";
 import IngredientsList from "./IngredientsList";
+import { getRecipeFromChefClaude, getRecipeFromMistral } from "../ai.js";
+
 export default function Main() {
     const [showRecipe, setResipe] = React.useState(false)
-    const [ingredients, setIngredients] = React.useState([])
-
-    const i = ingredients.map(ingredient => (<li key={ingredient}>{ingredient}</li>))
+    // const [ingredients, setIngredients] = React.useState([])
+    const [ingredients, setIngredients] = React.useState(["potatos","onions","wheat","all indian spices"])
 
 
     function handleSubmit(event) {
@@ -13,14 +14,13 @@ export default function Main() {
         const formData = new FormData(event.target);
         const newIngredient = formData.get("ingredient")
 
-        setIngredients(function (prevIngredients) {
-            return [...prevIngredients, newIngredient]
-        })
+        setIngredients(prevIngredients => [...prevIngredients, newIngredient])
         event.target.reset();
     }
 
 
-    function getRecipe() {
+    async function getRecipe() {
+        // const recipeMarkdown = async 
         setResipe(prev => !prev)
     }
 
@@ -38,9 +38,12 @@ export default function Main() {
                 />
                 <button>Add Ingredient</button>
             </form>
-            {i.length > 0 && <IngredientsList />}
+            {ingredients.length > 0 && <IngredientsList ingredients={ingredients} getRecipe={getRecipe}/>}
 
             {showRecipe && <CloudeRecipe />}
         </main>
     )
 }
+
+
+//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
