@@ -1,7 +1,7 @@
 import React from "react";
 import CloudeRecipe from "./CloudeRecipe";
 import IngredientsList from "./IngredientsList";
-import { getRecipeFromChefClaude, getRecipeFromMistral } from "../ai.js";
+// import {getRecipeFromMistral } from "../ai.js";
 
 export default function Main() {
     const [showRecipe, setResipe] = React.useState(false)
@@ -44,6 +44,3 @@ export default function Main() {
         </main>
     )
 }
-
-
-//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
