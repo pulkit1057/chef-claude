@@ -103,6 +103,12 @@ ul.ingredients-list > li {
   font-family: Inter, sans-serif;
   font-size: 0.875rem;
   cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.1s ease;
+}
+
+.get-recipe-container button:active {
+  transform: scale(0.95);
+  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.1);
 }
 
 .suggested-recipe-container {

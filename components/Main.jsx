@@ -10,9 +10,14 @@ export default function Main() {
 
 
 
+    const [ingredients, setIngredients] = React.useState([])
+    // const [ingredients, setIngredients] = React.useState(["potatos", "onions", "wheat", "all indian spices"])
 
-    // const [ingredients, setIngredients] = React.useState([])
-    const [ingredients, setIngredients] = React.useState(["potatos", "onions", "wheat", "all indian spices"])
+    React.useEffect(() => {
+        if (recipe !== "" && recipeSection.current !== null) {
+            recipeSection.current.scrollIntoView({behavior:"smooth"});
+        }
+    }, [recipe])
 
 
     function handleSubmit(event) {
@@ -24,7 +29,7 @@ export default function Main() {
         event.target.reset();
     }
 
-    
+
 
 
     async function getRecipe() {
